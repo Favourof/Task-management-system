@@ -40,8 +40,6 @@ export const verifyPayment = async (req, res) => {
   try {
     const { reference } = req.query;
 
-    console.log(reference);
-
     const response = await axios.get(
       `https://api.paystack.co/transaction/verify/${reference}`,
       {
