@@ -1,6 +1,7 @@
 import axios from "axios";
 import Task from "../model/task.js";
 import { env } from "../config/env.js";
+import User from "../model/user.js";
 
 export const optimizeTask = async (req, res) => {
   console.log(env.apiKey);
@@ -16,6 +17,12 @@ export const optimizeTask = async (req, res) => {
 
     if (task.user.toString() !== req.user.id && req.user.role !== "ADMIN") {
       return res.status(401).json({ massage: "Unauthorized" });
+    }
+    const user = await User.findById(req.user.id);
+    if (user.isPremium !== true) {
+      return res
+        .status(401)
+        .json({ massage: "Upgrade to premium to use ai features" });
     }
 
     const promt = `
