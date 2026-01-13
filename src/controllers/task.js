@@ -33,6 +33,26 @@ export const getTask = async (req, res) => {
   }
 };
 
+export const getSingleTask = async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) {
+      res.status(404).json({
+        message: "Task not found",
+      });
+    }
+    res.status(200).json({
+      message: "Task Fetched!",
+      task,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: "Could not fetch task!"
+    });
+  }
+};
+
 export const updateTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
