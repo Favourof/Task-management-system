@@ -4,8 +4,6 @@ import { env } from "../config/env.js";
 import User from "../model/user.js";
 
 export const optimizeTask = async (req, res) => {
-  console.log(env.apiKey);
-
   const { taskId } = req.body;
 
   try {

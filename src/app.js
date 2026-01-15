@@ -17,7 +17,7 @@ app.use("/payment", paymentRoute);
 app.use("/ai", aiRoute);
 
 app.get("/", (req, res) => {
-  res.send("Task Management is runing fine");
+  res.send("Task Management is runing fine and smooth");
 });
 
 export default app;
